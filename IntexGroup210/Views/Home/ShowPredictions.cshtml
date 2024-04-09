@@ -1,0 +1,186 @@
+@model IEnumerable<IntexGroup210.Models.FraudPrediction>
+
+@{
+    ViewData["Title"] = "Predictions";
+
+    var classTypeDict = new Dictionary<int, string>
+    {
+        { 0, "Not Fraudulent" },
+        { 1, "Fraudulent" }
+    };
+}
+
+<style>
+    .table-responsive {
+        overflow-x: auto;
+    }
+    .full-width-table {
+        margin-left: -50px; 
+        margin-right: 0;
+
+    }
+    .table {
+        width: auto; 
+        margin-bottom: 0; 
+    }
+    .prediction-cell {
+        background-color: #e0f2f1;
+    }
+
+</style>
+
+<h2>Predictions</h2>
+<div class="full-width-table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Amount</th>
+                <th>Fraud</th>
+                <th>DayOfWeek_Mon</th>
+                <th>DayOfWeek_Sat</th>
+                <th>DayOfWeek_Sun</th>
+                <th>DayOfWeek_Thu</th>
+                <th>DayOfWeek_Tue</th>
+                <th>DayOfWeek_Wed</th>
+                <th>EntryMode_PIN</th>
+                <th>EntryMode_Tap</th>
+                <th>TypeOfTransaction_Online</th>
+                <th>TypeOfTransaction_POS</th>
+                <th>CountryOfTransaction_India</th>
+                <th>CountryOfTransaction_Russia</th>
+                <th>CountryOfTransaction_USA</th>
+                <th>CountryOfTransaction_UnitedKingdom</th>
+                <th>ShippingAddress_India</th>
+                <th>ShippingAddress_Russia</th>
+                <th>ShippingAddress_USA</th>
+                <th>ShippingAddress_UnitedKingdom</th>
+                <th>ShippingAddress_unknown</th>
+                <th>Bank_HSBC</th>
+                <th>Bank_Halifax</th>
+                <th>Bank_Lloyds</th>
+                <th>Bank_Metro</th>
+                <th>Bank_Monzo</th>
+                <th>Bank_RBS</th>
+                <th>TypeOfCard_Visa</th>
+                <th class="prediction-cell">Prediction</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Customer.time</td>
+                    <td>@item.Customer.amount</td>
+                    <td>@item.Customer.fraud</td>
+                    <td>@item.Customer.day_of_week_Mon</td>
+                    <td>@item.Customer.day_of_week_Sat</td>
+                    <td>@item.Customer.day_of_week_Sun</td>
+                    <td>@item.Customer.day_of_week_Thu</td>
+                    <td>@item.Customer.day_of_week_Tue</td>
+                    <td>@item.Customer.day_of_week_Wed</td>
+                    <td>@item.Customer.entry_mode_PIN</td>
+                    <td>@item.Customer.entry_mode_Tap</td>
+                    <td>@item.Customer.type_of_transaction_Online</td>
+                    <td>@item.Customer.type_of_transaction_POS</td>
+                    <td>@item.Customer.country_of_transaction_India</td>
+                    <td>@item.Customer.country_of_transaction_Russia</td>
+                    <td>@item.Customer.country_of_transaction_USA</td>
+                    <td>@item.Customer.country_of_transaction_UnitedKingdom</td>
+                    <td>@item.Customer.shipping_address_India</td>
+                    <td>@item.Customer.shipping_address_Russia</td>
+                    <td>@item.Customer.shipping_address_USA</td>
+                    <td>@item.Customer.shipping_address_UnitedKingdom</td>
+                    <td>@item.Customer.shipping_address_unknown</td>
+                    <td>@item.Customer.bank_HSBC</td>
+                    <td>@item.Customer.bank_Halifax</td>
+                    <td>@item.Customer.bank_Lloyds</td>
+                    <td>@item.Customer.bank_Metro</td>
+                    <td>@item.Customer.bank_Monzo</td>
+                    <td>@item.Customer.bank_RBS</td>
+                    <td>@item.Customer.type_of_card_Visa</td>
+                    <td class="prediction-cell">@item.Prediction</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <!-- use a simple if statement in razor code to show incorrect predictions -->
+    <h2>Incorrect Predictions</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Amount</th>
+                <th>Fraud</th>
+                <th>DayOfWeek_Mon</th>
+                <th>DayOfWeek_Sat</th>
+                <th>DayOfWeek_Sun</th>
+                <th>DayOfWeek_Thu</th>
+                <th>DayOfWeek_Tue</th>
+                <th>DayOfWeek_Wed</th>
+                <th>EntryMode_PIN</th>
+                <th>EntryMode_Tap</th>
+                <th>TypeOfTransaction_Online</th>
+                <th>TypeOfTransaction_POS</th>
+                <th>CountryOfTransaction_India</th>
+                <th>CountryOfTransaction_Russia</th>
+                <th>CountryOfTransaction_USA</th>
+                <th>CountryOfTransaction_UnitedKingdom</th>
+                <th>ShippingAddress_India</th>
+                <th>ShippingAddress_Russia</th>
+                <th>ShippingAddress_USA</th>
+                <th>ShippingAddress_UnitedKingdom</th>
+                <th>ShippingAddress_unknown</th>
+                <th>Bank_HSBC</th>
+                <th>Bank_Halifax</th>
+                <th>Bank_Lloyds</th>
+                <th>Bank_Metro</th>
+                <th>Bank_Monzo</th>
+                <th>Bank_RBS</th>
+                <th>TypeOfCard_Visa</th>
+                <th class="prediction-cell">Prediction</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                if (item.Customer.fraud != item.Prediction)
+                {
+                    <tr>
+                        <td>@item.Customer.time</td>
+                        <td>@item.Customer.amount</td>
+                        <td>@item.Customer.fraud</td>
+                        <td>@item.Customer.day_of_week_Mon</td>
+                        <td>@item.Customer.day_of_week_Sat</td>
+                        <td>@item.Customer.day_of_week_Sun</td>
+                        <td>@item.Customer.day_of_week_Thu</td>
+                        <td>@item.Customer.day_of_week_Tue</td>
+                        <td>@item.Customer.day_of_week_Wed</td>
+                        <td>@item.Customer.entry_mode_PIN</td>
+                        <td>@item.Customer.entry_mode_Tap</td>
+                        <td>@item.Customer.type_of_transaction_Online</td>
+                        <td>@item.Customer.type_of_transaction_POS</td>
+                        <td>@item.Customer.country_of_transaction_India</td>
+                        <td>@item.Customer.country_of_transaction_Russia</td>
+                        <td>@item.Customer.country_of_transaction_USA</td>
+                        <td>@item.Customer.country_of_transaction_UnitedKingdom</td>
+                        <td>@item.Customer.shipping_address_India</td>
+                        <td>@item.Customer.shipping_address_Russia</td>
+                        <td>@item.Customer.shipping_address_USA</td>
+                        <td>@item.Customer.shipping_address_UnitedKingdom</td>
+                        <td>@item.Customer.shipping_address_unknown</td>
+                        <td>@item.Customer.bank_HSBC</td>
+                        <td>@item.Customer.bank_Halifax</td>
+                        <td>@item.Customer.bank_Lloyds</td>
+                        <td>@item.Customer.bank_Metro</td>
+                        <td>@item.Customer.bank_Monzo</td>
+                        <td>@item.Customer.bank_RBS</td>
+                        <td>@item.Customer.type_of_card_Visa</td>
+                        <td class="prediction-cell">@item.Prediction</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
