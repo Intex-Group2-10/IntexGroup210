@@ -14,6 +14,4 @@ public partial class User
     public bool TwoFactor { get; set; }
 
     public bool Admin { get; set; }
-
-    public virtual ICollection<Customer> Customers { get; set; } = new List<Customer>();
 }

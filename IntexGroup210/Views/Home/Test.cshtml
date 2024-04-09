@@ -4,4 +4,32 @@
 @{
 }
 
+@model List<IntexGroup210.Models.Product>
+
+<h2>Customers</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Number of Parts</th>
+            <th>Price</th>
+            <!-- Add other customer properties as needed -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Product in Model)
+        {
+            <tr>
+                <td>@Product.Name</td>
+                <td>@Product.NumParts</td>
+                <td>@Product.Price</td>
+                <!-- Add other customer properties as needed -->
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
 

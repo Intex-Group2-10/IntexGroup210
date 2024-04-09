@@ -1,3 +1,4 @@
+using IntexGroup210.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,11 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
-//builder.Services.AddDbContext<LegoContext>(options =>
-//{
-	//options.UseSqlite(builder.Configuration["ConnectionStrings:LegoConnection"]);
-//}
-//);
+builder.Services.AddDbContext<LegoDbContext>(options =>
+{
+	options.UseSqlite(builder.Configuration["ConnectionStrings:LegoConnection"]);
+});
+
+builder.Services.AddScoped<ILegoRepository, EFLegoRepository>();
 
 var app = builder.Build();
 

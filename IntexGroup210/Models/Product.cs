@@ -5,9 +5,9 @@ namespace IntexGroup210.Models;
 
 public partial class Product
 {
-    public int ProductId { get; set; }
+    public int? ProductId { get; set; }
 
-    public string ProductName { get; set; } = null!;
+    public string? Name { get; set; }
 
     public int? Year { get; set; }
 
@@ -24,6 +24,4 @@ public partial class Product
     public string? Description { get; set; }
 
     public string? Category { get; set; }
-
-    public virtual ICollection<LineItem> LineItems { get; set; } = new List<LineItem>();
 }

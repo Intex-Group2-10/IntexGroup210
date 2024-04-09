@@ -1,3 +1,4 @@
+using IntexGroup210.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -5,7 +6,14 @@ namespace IntexGroup210.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private ILegoRepository _repo;
+
+		public HomeController(ILegoRepository temp)
+		{
+			_repo = temp;
+		}
+
+		public IActionResult Index()
         {
             return View();
         }
@@ -17,7 +25,9 @@ namespace IntexGroup210.Controllers
 
 		public IActionResult Test()
 		{
-			return View();
+            var viewStuff = _repo.Products.ToList();
+
+			return View(viewStuff);
 		}
     }
 }
