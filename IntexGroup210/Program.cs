@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+//builder.Services.AddDbContext<LegoContext>(options =>
+//{
+	//options.UseSqlite(builder.Configuration["ConnectionStrings:LegoConnection"]);
+//}
+//);
 
 var app = builder.Build();
 

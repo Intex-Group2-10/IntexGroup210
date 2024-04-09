@@ -10,7 +10,9 @@
 	<link rel="stylesheet" href="~/bootstrap/css/style.css" />
     <link rel="stylesheet" href="~/bootstrap/css/bootstrap.min.css" />
 
+	<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Test">Test</a>
 </head>
+
 <body>
     <header>
 		<!-- Start Header/Navigation -->
@@ -43,6 +45,7 @@
 			</div>
 		</nav>
 		<!-- End Header/Navigation -->
+
     </header>
 
     <div class="container">
@@ -161,5 +164,6 @@
 	<script src="~/bootstrap/js/tiny-slider.js"></script>
 	<script src="~/bootstrap/js/custom.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
